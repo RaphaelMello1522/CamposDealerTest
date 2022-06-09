@@ -1,0 +1,76 @@
+﻿@model CamposDealerTest.Models.Vendas
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Excluir</h2>
+
+<h3>Tem certeza que deseja excluir?</h3>
+<div>
+    <h4>Vendas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Nome Cliente</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.nmCliente)
+        </dd>
+
+        <dt>
+            <label>Descrição do Produto</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.produto.dscProduto)
+        </dd>
+
+        <dt>
+            <label>Quantidade</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qtdVenda)
+        </dd>
+
+        <dt>
+            <label>Valor Unitário</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vlrUnitarioVenda)
+        </dd>
+
+        <dt>
+            <label>Data Venda</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dthVenda)
+        </dd>
+
+        <dt>
+            <label>Total</label>
+        </dt>
+
+        @{
+            float total = 0;
+
+            total += Model.vlrUnitarioVenda * Model.qtdVenda;
+            <label>@total</label>
+
+        }
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

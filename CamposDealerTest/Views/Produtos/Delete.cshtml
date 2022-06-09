@@ -1,0 +1,39 @@
+﻿@model CamposDealerTest.Models.Produto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Excluir</h2>
+
+<h3>Tem certeza que deseja excluir o seguinte produto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Descrição</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dscProduto)
+        </dd>
+
+        <dt>
+            <label>Valor</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vlrUnitario)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

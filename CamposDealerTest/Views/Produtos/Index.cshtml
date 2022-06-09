@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CamposDealerTest.Models.Produto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>
+            <label>Descrição</label>
+        </th>
+        <th>
+            <label>Valor</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dscProduto)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.vlrUnitario)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.idProduto }) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.idProduto }) |
+            @Html.ActionLink("Deletar", "Delete", new { id = item.idProduto })
+        </td>
+    </tr>
+}
+
+</table>

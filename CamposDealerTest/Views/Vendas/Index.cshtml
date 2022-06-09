@@ -1,0 +1,79 @@
+﻿@model IEnumerable<CamposDealerTest.Models.Vendas>
+    @using CamposDealerTest.Models
+
+@{
+    ViewBag.Title = "Index";
+
+    var produto = new List<Vendas>();
+    float subtotal = 0;
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table  class="table table-hover">
+    <tr>
+        <th>
+            <label>Nome Cliente</label>
+        </th>
+        <th>
+            <label>Descrição Produto</label>
+        </th>
+        <th>
+            <label>Quantidade</label>
+        </th>
+        <th>
+            <label>Valor Unitário</label>
+        </th>
+        <th>
+            <label>Data Venda</label>
+        </th>
+        <th>
+            <label>Total</label>
+        </th>
+        <th></th>
+
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.nmCliente)
+            @Html.DisplayFor(modelItem => item.IdVenda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.produto.dscProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qtdVenda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vlrUnitarioVenda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dthVenda)
+        </td>
+        <td>
+
+
+            @{
+                float total = 0;
+
+                total += item.vlrUnitarioVenda * item.qtdVenda;
+                <label>@total</label>
+                            
+            }
+
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdVenda }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.IdVenda }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.IdVenda })
+        </td>
+    </tr>
+}
+
+</table>

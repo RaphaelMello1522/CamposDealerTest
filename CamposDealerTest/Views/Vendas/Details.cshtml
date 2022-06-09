@@ -1,0 +1,72 @@
+﻿@model CamposDealerTest.Models.Vendas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vendas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Nome Cliente</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.nmCliente)
+        </dd>
+
+        <dt>
+            <label>Descrição Produto</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.produto.dscProduto)
+        </dd>
+
+        <dt>
+            <label>Quantidade</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qtdVenda)
+        </dd>
+
+        <dt>
+            <label>Valor Unitário</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vlrUnitarioVenda)
+        </dd>
+
+        <dt>
+            <label>Data Venda</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dthVenda)
+        </dd>
+
+        <dt>
+            <label>Total</label>
+        </dt>
+
+        <dd>
+            @{
+                float total = 0;
+
+                total += Model.vlrUnitarioVenda * Model.qtdVenda;
+                <label>@total</label>
+
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdVenda }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>
