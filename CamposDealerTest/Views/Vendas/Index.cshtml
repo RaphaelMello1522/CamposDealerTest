@@ -1,0 +1,78 @@
+﻿@model IEnumerable<CamposDealerTest.Models.Vendas>
+    @using CamposDealerTest.Models
+
+@{
+    ViewBag.Title = "Index";
+
+    var produto = new List<Vendas>();
+    float subtotal = 0;
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente.nmCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.produto.dscProduto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qtdVenda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vlrUnitarioVenda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dthVenda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vlrTotalVenda)
+        </th>
+        <th></th>
+
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.nmCliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.produto.dscProduto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qtdVenda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vlrUnitarioVenda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dthVenda)
+        </td>
+        <td>
+
+
+            @{
+                float total = 0;
+
+                total += item.vlrUnitarioVenda * item.qtdVenda;
+                <label>@total</label>
+                            
+            }
+
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdVenda }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdVenda }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdVenda })
+        </td>
+    </tr>
+}
+
+</table>

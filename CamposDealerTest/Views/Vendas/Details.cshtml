@@ -1,0 +1,66 @@
+﻿@model CamposDealerTest.Models.Vendas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vendas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.nmCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.nmCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.produto.dscProduto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.produto.dscProduto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.qtdVenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qtdVenda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vlrUnitarioVenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vlrUnitarioVenda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dthVenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dthVenda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vlrTotalVenda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vlrTotalVenda)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdVenda }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
