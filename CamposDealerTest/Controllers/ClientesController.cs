@@ -19,6 +19,8 @@ namespace CamposDealerTest.Controllers
 
         public async Task<IActionResult> Index(string busca)
         {
+            GerarCargaDeCliente();
+
             var cliente = from m in _context.Cliente
                           select m;
 

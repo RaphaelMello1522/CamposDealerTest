@@ -20,7 +20,7 @@ namespace CamposDealerTest.Controllers
 
         public async Task<IActionResult> Index(string busca)
         {
-            await _vendaService.GetVendasAsync();
+            GerarCargaDeVendas();
 
             var venda = from m in _context.Venda
                         select m;
