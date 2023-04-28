@@ -11,11 +11,11 @@ namespace CamposDealerTest.Models
 
         [JsonProperty("idCliente")]
         [Required]
-        public int IdCliente { get; set; }
+        public int ClienteId { get; set; }
 
         [JsonProperty("idProduto")]
         [Required]
-        public int IdProduto { get; set; }
+        public int ProdutoId { get; set; }
 
         [JsonProperty("qtdVenda")]
         [Required]

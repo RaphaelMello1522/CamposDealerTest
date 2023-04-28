@@ -60,8 +60,8 @@ namespace CamposDealerTest.Controllers
         public async Task<IActionResult> Create(Venda venda)
         {
             var vendas = _context.Venda.Include("Cliente").Include("Produto");
-            var cliente = _context.Cliente.ToList().Where(x => x.IdCliente.Equals(venda.IdCliente));
-            var produto = _context.Produto.ToList().Where(x => x.IdProduto.Equals(venda.IdProduto));
+            var cliente = _context.Cliente.ToList().Where(x => x.IdCliente.Equals(venda.ClienteId));
+            var produto = _context.Produto.ToList().Where(x => x.IdProduto.Equals(venda.ProdutoId));
 
             venda.ValorTotalVenda = venda.QuantidadeVenda * venda.ValorUnitarioVenda;
             venda.DataHoraVenda = DateTime.Now;
@@ -166,9 +166,11 @@ namespace CamposDealerTest.Controllers
             foreach (var item in carga)
             {
                 item.IdVenda = 0;
-                item.IdCliente = 0;
-                item.IdProduto = 0;
+                _context.Cliente.ToList().Where(x => x.IdCliente.Equals(item.ClienteId));
+                _context.Produto.ToList().Where(x => x.IdProduto.Equals(item.ProdutoId));
+
             }
+
             _context.AddRange(carga);
             _context.SaveChanges();
         }

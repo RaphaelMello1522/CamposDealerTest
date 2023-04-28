@@ -5,15 +5,17 @@ namespace CamposDealerTest.Models
 {
     public class Cliente
     {
-        [JsonProperty("idProduto")]
         [Key]
         [Required]
+        [JsonProperty("idCliente")]
         public int IdCliente { get; set; }
 
         [Required]
+        [JsonProperty("nmCliente")]
         public string Nome { get; set; }
 
         [Required]
+        [JsonProperty("Cidade")]
         public string Cidade { get; set; }
     }
 }
