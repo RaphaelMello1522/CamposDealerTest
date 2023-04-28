@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CamposDealerTest.Models.Venda>
+
+@{
+    ViewData["Title"] = "Lista de Vendas";
+}
+
+<h1>Lista de Vendas</h1>
+
+<p>
+    <a asp-action="Create">Nova Venda</a>
+</p>
+<table class="table">
+    <thead>
+        <form>
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdProduto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantidadeVenda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorUnitarioVenda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataHoraVenda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorTotalVenda)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProduto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantidadeVenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorUnitarioVenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataHoraVenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorTotalVenda)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdVenda">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdVenda">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdVenda">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
