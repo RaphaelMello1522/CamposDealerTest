@@ -166,9 +166,9 @@ namespace CamposDealerTest.Controllers
             foreach (var item in carga)
             {
                 item.IdVenda = 0;
+                item.ValorTotalVenda = item.ValorUnitarioVenda * item.QuantidadeVenda;
                 _context.Cliente.ToList().Where(x => x.IdCliente.Equals(item.ClienteId));
                 _context.Produto.ToList().Where(x => x.IdProduto.Equals(item.ProdutoId));
-
             }
 
             _context.AddRange(carga);
