@@ -22,12 +22,14 @@ namespace CamposDealerTest.Controllers
         {
             GerarCargaDeVendas();
 
-            var venda = from m in _context.Venda
+            var venda = from m in _context.Venda.Include("Cliente").Include("Produto")
                         select m;
 
             if (!string.IsNullOrEmpty(busca))
             {
                 venda = venda.Where(p => p.Cliente.Nome!.Contains(busca) || p.Produto.Descricao!.Contains(busca));
+
+
             }
             return View(await venda.ToListAsync());
         }
@@ -68,11 +70,13 @@ namespace CamposDealerTest.Controllers
             _context.Add(venda);
             await _context.SaveChangesAsync();
 
-            return View(venda);
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Edit(int? id)
         {
+            PopulateSelect();
+
             if (id == null || _context.Venda == null)
             {
                 return NotFound();
@@ -95,27 +99,17 @@ namespace CamposDealerTest.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(venda);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!VendaExists(venda.IdVenda))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(venda);
+            var vendas = _context.Venda.Include("Cliente").Include("Produto");
+            var cliente = _context.Cliente.ToList().Where(x => x.IdCliente.Equals(venda.ClienteId));
+            var produto = _context.Produto.ToList().Where(x => x.IdProduto.Equals(venda.ProdutoId));
+
+            venda.ValorTotalVenda = venda.QuantidadeVenda * venda.ValorUnitarioVenda;
+            venda.DataHoraVenda = DateTime.Now;
+
+            _context.Update(venda);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Vendas/Delete/5

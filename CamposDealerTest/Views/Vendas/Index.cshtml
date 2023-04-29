@@ -11,28 +11,28 @@
 </p>
 <table class="table">
     <thead>
-        <form>
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+        <form method="post" class="d-flex" asp-controller="Vendas" asp-action="Index">
+            <input class="form-control me-2" type="text" name="busca" method="get" placeholder="Pesquisar por Nome do cliente ou Descrição do produto" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ClienteId)
+                Nome Cliente
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProdutoId)
+                Descrição do Produto
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.QuantidadeVenda)
+                Quantidade
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ValorUnitarioVenda)
+                Valor Unitário
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataHoraVenda)
+                Data e Hora da Venda
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ValorTotalVenda)
+                Total da Venda
             </th>
             <th></th>
         </tr>
@@ -41,10 +41,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ClienteId)
+                @Html.DisplayFor(modelItem => item.Cliente.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProdutoId)
+                @Html.DisplayFor(modelItem => item.Produto.Descricao)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.QuantidadeVenda)

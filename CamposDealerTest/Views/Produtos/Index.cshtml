@@ -11,9 +11,9 @@
 </p>
 <table class="table">
     <thead>
-        <form>
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+        <form method="post" class="d-flex" asp-controller="Produtos" asp-action="Index">
+            <input class="form-control me-2" type="text" name="busca" method="get" placeholder="Pesquisar por Descrição do Produto" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
         <tr>
             <th>

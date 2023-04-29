@@ -32,10 +32,17 @@ namespace CamposDealerTest.Services
                 return result;
 
             }
-            catch (Exception ex)
+            catch (Exception ex) when (LogException(ex))
             {
+                Console.WriteLine("A excessão foi manuseada com sucesso!");
                 return null;
             }
+
+        }
+        private static bool LogException(Exception ex)
+        {
+            Console.WriteLine($"Excessão captada {ex.GetType()}");
+            return false;
         }
     }
 }

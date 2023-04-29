@@ -10,37 +10,37 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ClienteId)
+            Nome Cliente
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ClienteId)
+            @Html.DisplayFor(model => model.Cliente.Nome)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProdutoId)
+            Descrição Produto
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProdutoId)
+            @Html.DisplayFor(model => model.Produto.Descricao)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuantidadeVenda)
+            Quantidade
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.QuantidadeVenda)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ValorUnitarioVenda)
+            Valor Unitário
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ValorUnitarioVenda)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataHoraVenda)
+            Data e Hora da Venda
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DataHoraVenda)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ValorTotalVenda)
+            Total
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ValorTotalVenda)
@@ -48,6 +48,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdVenda">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.IdVenda">Editar</a> |
     <a asp-action="Index">Voltar</a>
 </div>
