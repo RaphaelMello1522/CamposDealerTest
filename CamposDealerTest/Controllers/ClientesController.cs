@@ -1,6 +1,5 @@
 ﻿using CamposDealerTest.Data;
 using CamposDealerTest.Models;
-using CamposDealerTest.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,18 +8,14 @@ namespace CamposDealerTest.Controllers
     public class ClientesController : Controller
     {
         private readonly CamposDealerTestContext _context;
-        private IClienteService _clienteService;
 
-        public ClientesController(CamposDealerTestContext context, IClienteService clienteService)
+        public ClientesController(CamposDealerTestContext context)
         {
             _context = context;
-            _clienteService = clienteService;
         }
 
         public async Task<IActionResult> Index(string busca)
         {
-            GerarCargaDeCliente();
-
             var cliente = from m in _context.Cliente
                           select m;
 
@@ -152,18 +147,6 @@ namespace CamposDealerTest.Controllers
         private bool ClienteExists(int id)
         {
             return (_context.Cliente?.Any(e => e.IdCliente == id)).GetValueOrDefault();
-        }
-
-        //para gerar a carga o id tem de ser 0 pois o SQL server faz o auto-increment
-        public void GerarCargaDeCliente()
-        {
-            var carga = _clienteService.GetClientesAsync().Result;
-            foreach (var item in carga)
-            {
-                item.IdCliente = 0;
-            }
-            _context.AddRange(carga);
-            _context.SaveChanges();
         }
     }
 }

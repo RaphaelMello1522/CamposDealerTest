@@ -1,6 +1,5 @@
 ﻿using CamposDealerTest.Data;
 using CamposDealerTest.Models;
-using CamposDealerTest.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,18 +8,14 @@ namespace CamposDealerTest.Controllers
     public class ProdutosController : Controller
     {
         private readonly CamposDealerTestContext _context;
-        private IProdutoService _produtoService;
 
-        public ProdutosController(CamposDealerTestContext context, IProdutoService produtoService)
+        public ProdutosController(CamposDealerTestContext context)
         {
             _context = context;
-            _produtoService = produtoService;
         }
 
         public async Task<IActionResult> Index(string busca)
         {
-            GerarCargaDeProdutos();
-
             var produto = from m in _context.Produto
                           select m;
 
@@ -151,18 +146,6 @@ namespace CamposDealerTest.Controllers
         private bool ProdutoExists(int id)
         {
             return (_context.Produto?.Any(e => e.IdProduto == id)).GetValueOrDefault();
-        }
-
-        //para gerar a carga o id tem de ser 0 pois o SQL server faz o auto-increment
-        public void GerarCargaDeProdutos()
-        {
-            var carga = _produtoService.GetProdutosAsync().Result;
-            foreach (var item in carga)
-            {
-                item.IdProduto = 0;
-            }
-            _context.AddRange(carga);
-            _context.SaveChanges();
         }
     }
 }

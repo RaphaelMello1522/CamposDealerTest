@@ -20,8 +20,6 @@ namespace CamposDealerTest.Controllers
 
         public async Task<IActionResult> Index(string busca)
         {
-            GerarCargaDeVendas();
-
             var venda = from m in _context.Venda.Include("Cliente").Include("Produto")
                         select m;
 
@@ -151,22 +149,6 @@ namespace CamposDealerTest.Controllers
         private bool VendaExists(int id)
         {
             return (_context.Venda?.Any(e => e.IdVenda == id)).GetValueOrDefault();
-        }
-
-        //para gerar a carga o id tem de ser 0 pois o SQL server faz o auto-increment
-        private void GerarCargaDeVendas()
-        {
-            var carga = _vendaService.GetVendasAsync().Result;
-            foreach (var item in carga)
-            {
-                item.IdVenda = 0;
-                item.ValorTotalVenda = item.ValorUnitarioVenda * item.QuantidadeVenda;
-                _context.Cliente.ToList().Where(x => x.IdCliente.Equals(item.ClienteId));
-                _context.Produto.ToList().Where(x => x.IdProduto.Equals(item.ProdutoId));
-            }
-
-            _context.AddRange(carga);
-            _context.SaveChanges();
         }
 
         private void PopulateSelect(object selecionado = null)
