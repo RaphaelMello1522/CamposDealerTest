@@ -61,7 +61,12 @@ namespace CamposDealerTest.Controllers
         {
             var vendas = _context.Venda.Include("Cliente").Include("Produto");
             var cliente = _context.Cliente.ToList().Where(x => x.IdCliente.Equals(venda.ClienteId));
-            var produto = _context.Produto.ToList().Where(x => x.IdProduto.Equals(venda.ProdutoId));
+            var produtos = _context.Produto.ToList().Where(x => x.IdProduto.Equals(venda.ProdutoId));
+
+            foreach (var item in produtos)
+            {
+                venda.ValorUnitarioVenda = item.ValorUnitario;
+            }
 
             venda.ValorTotalVenda = venda.QuantidadeVenda * venda.ValorUnitarioVenda;
             venda.DataHoraVenda = DateTime.Now;

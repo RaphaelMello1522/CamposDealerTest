@@ -23,7 +23,7 @@ namespace CamposDealerTest.Models
 
         [JsonProperty("vlrUnitarioVenda")]
         [Required]
-        public int ValorUnitarioVenda { get; set; }
+        public float ValorUnitarioVenda { get; set; }
 
         [JsonProperty("dthVenda")]
         [Required]
